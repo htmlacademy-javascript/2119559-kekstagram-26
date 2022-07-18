@@ -1,5 +1,6 @@
 import {getDataUsers} from './data.js';
-
+import {openBigPictureModal} from './fullSizePicture-modal.js';
+import {isEnterKey} from './util.js';
 
 const drawMiniatures = function(){
   const data = getDataUsers();
@@ -13,7 +14,17 @@ const drawMiniatures = function(){
 
     newPicture.querySelector('.picture__img').src = item.url;
     newPicture.querySelector('.picture__likes').textContent = item.likes;
-    newPicture.querySelector('.picture__comments').textContent = item.comments;
+    newPicture.querySelector('.picture__comments').textContent = item.comments.length;
+
+    newPicture.querySelector('.picture__img').addEventListener('click', () => {
+      openBigPictureModal(item);
+    });
+
+    newPicture.querySelector('.picture__img').addEventListener('keydown', (evt) => {
+      if (isEnterKey(evt)) {
+        openBigPictureModal();
+      }
+    });
 
     similarListFragment.appendChild(newPicture);
   });
