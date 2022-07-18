@@ -35,4 +35,13 @@ const isStringRightLength = function(checkedString, maxLength)
 
 const getRandomArrayElement = (elements) => elements[getRandomIntNumber(0, elements.length - 1)];
 
-export {getRandomIntNumber, createRandomIdFromRangeGenerator, isStringRightLength, getRandomArrayElement};
+const isEscapeKey = (evt) => {
+  return evt.key === 'Escape';
+};
+
+const isEnterKey = (evt) => {
+  return evt.key === 'Enter';
+};
+
+
+export {getRandomIntNumber, createRandomIdFromRangeGenerator, isStringRightLength, getRandomArrayElement, isEscapeKey, isEnterKey};
