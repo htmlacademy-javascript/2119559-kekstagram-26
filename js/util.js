@@ -30,7 +30,7 @@ function createRandomIdFromRangeGenerator (min, max) {
 
 const isStringRightLength = function(checkedString, maxLength)
 {
-  return String.length(checkedString) <= maxLength;
+  return checkedString.length <= maxLength;
 };
 
 const getRandomArrayElement = (elements) => elements[getRandomIntNumber(0, elements.length - 1)];

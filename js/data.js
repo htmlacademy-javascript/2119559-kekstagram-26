@@ -1,5 +1,5 @@
-import {getRandomIntNumber, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util';
-import {Comments, Descriptions, Names} from './consts';
+import {getRandomIntNumber, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
+import {Comments, Descriptions, Names} from './consts.js';
 
 const createComments = () => {
   const comments = [];
