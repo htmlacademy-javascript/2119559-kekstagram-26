@@ -36,5 +36,11 @@ const Descriptions = [
   'За двумя зайцами погонишься – от обоих схлопочешь! ',
 ];
 
-export {Comments, Descriptions, Names};
+const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+
+const MAX_LENGTH_HASHTAG = 20;
+const MAX_COUNT_HASHTAGS = 5;
+const DEFAULT_COUNT_COMMENTARY = 5;
+
+export {Comments, Descriptions, Names, re, MAX_COUNT_HASHTAGS, MAX_LENGTH_HASHTAG, DEFAULT_COUNT_COMMENTARY};
 

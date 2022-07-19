@@ -3,7 +3,7 @@ import {Comments, Descriptions, Names} from './consts.js';
 
 const createComments = () => {
   const comments = [];
-  const numberOfComments = getRandomIntNumber(1, 4);
+  const numberOfComments = getRandomIntNumber(3, 16);
 
   const generateCommentId = createRandomIdFromRangeGenerator(100, 300);
 

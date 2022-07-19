@@ -1,9 +1,5 @@
 import {isEscapeKey, isEnterKey} from './util.js';
-
-const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
-const MAX_LENGTH_HASHTAG = 20;
-const MAX_COUNT_HASHTAGS = 5;
-
+import {re, MAX_COUNT_HASHTAGS, MAX_LENGTH_HASHTAG} from './consts.js';
 
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('#upload-file');
