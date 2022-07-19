@@ -35,9 +35,9 @@ const createCommentary = function(item, counter){
 const onLoadMoreCommentClick = function(item){
   commentaryCounter += DEFAULT_COUNT_COMMENTARY;
 
-  if(item.comments.length - 1 <= commentaryCounter)
+  if(item.comments.length <= commentaryCounter)
   {
-    commentaryCounter = item.comments.length - 1;
+    commentaryCounter = item.comments.length;
     bigPictureElement.querySelector('.comments-loader').classList.add('hidden');
   }
 
@@ -67,6 +67,8 @@ function closeBigPicModal () {
   commentaryCounter = 0;
   bigPictureElement.querySelector('.social__comments-loader').removeEventListener('click', onLoadMoreCommentClick);
   bigPictureElement.querySelector('.comments-loader').classList.remove('hidden');
+  document.querySelector('.img-upload__preview > img').removeAttribute('style');
+  document.querySelector('.img-upload__preview > img').removeAttribute('class');
 }
 
 btnCloseElement.addEventListener('click', () => {
