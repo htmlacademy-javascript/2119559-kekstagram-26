@@ -32,7 +32,7 @@ const createUser = (id) => ({
 const getDataUsers = function(){
   const allInfo = [];
 
-  for (let i = 0; i < 24; i++) {
+  for (let i = 1; i < 26; i++) {
     const userInfo = createUser(i);
     allInfo.push(userInfo);
   }

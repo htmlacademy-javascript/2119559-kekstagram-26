@@ -1,12 +1,13 @@
 import {isEscapeKey, isEnterKey} from './util.js';
 
+const body =  document.querySelector('body');
 const bigPictureElement = document.querySelector('.big-picture');
 const btnCloseElement = bigPictureElement.querySelector('.big-picture__cancel');
 
 const onPopupEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeUserModal();
+    closeBigPicModal();
   }
 };
 
@@ -37,26 +38,25 @@ function openBigPictureModal (item) {
   bigPictureElement.querySelector('.social__comment-count').classList.add('hidden');
   bigPictureElement.querySelector('.comments-loader').classList.add('hidden');
 
-  document.classList.add('modal__open');
+  body.classList.add('modal__open');
 
   document.addEventListener('keydown', onPopupEscKeydown);
 }
 
-
-function closeUserModal () {
+function closeBigPicModal () {
   bigPictureElement.classList.add('hidden');
-  document.classList.add('modal-open');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
 btnCloseElement.addEventListener('click', () => {
-  closeUserModal();
+  closeBigPicModal();
 });
 
 btnCloseElement.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
-    closeUserModal();
+    closeBigPicModal();
   }
 });
 
-export {openBigPictureModal};
+export {openBigPictureModal, closeBigPicModal, onPopupEscKeydown};
