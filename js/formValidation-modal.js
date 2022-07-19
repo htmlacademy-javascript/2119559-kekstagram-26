@@ -72,6 +72,7 @@ const createUploadFileForm = function(){
       errors.forEach((item) => {
         errorMsg = `${errorMsg  } ${  item.errors[0]}`;
       });
+      // eslint-disable-next-line no-alert
       alert(errorMsg);
     }
   });
