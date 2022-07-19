@@ -1,5 +1,6 @@
 import {isEscapeKey, isEnterKey} from './util.js';
 import {re, MAX_COUNT_HASHTAGS, MAX_LENGTH_HASHTAG} from './consts.js';
+import './filterTools-module.js';
 
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('#upload-file');
@@ -19,6 +20,9 @@ const closeForm = function(){
 
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
+
+  document.querySelector('.effect-level__slider').noUiSlider.set(100);
+  document.querySelector('.effect-level__slider').setAttribute('disabled', true);
 };
 
 const onFileUploadEscKeydown = (evt) => {
@@ -33,23 +37,16 @@ const onUploadFormChange = function(){
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onFileUploadEscKeydown);
+
+  document.querySelector('.scale__control--value').value = '100%';
+  document.querySelector('.scale__control--bigger').disabled = true;
+  document.querySelector('.effect-level__value').value = 100;
 };
 
 const createUploadFileForm = function(){
-  pristine.addValidator(hashtags, (value) => {
-    const allHashtagsMass = value.split(' ');
-    return !(allHashtagsMass.length > MAX_COUNT_HASHTAGS);
-  }, `Слишком много хештегов! Должно быть не больше ${ MAX_COUNT_HASHTAGS}.`, 3, false);
-
-  pristine.addValidator(hashtags, (value) => {
-    const allHashtagsMass = value.split(' ');
-    return allHashtagsMass.some((hashtag) => hashtag.length < MAX_LENGTH_HASHTAG);
-  }, `Хештеги не могут быть длиннее ${ MAX_LENGTH_HASHTAG } символов!`, 2, false);
-
-  pristine.addValidator(hashtags, (value) => {
-    const allHashtagsMass = value.split(' ');
-    return allHashtagsMass.some((hashtag) => (re.test(hashtag)));
-  }, 'Хештег должен содержать только буквы или цифры!', 1, false);
+  pristine.addValidator(hashtags, (value) => !(value.split(' ').length > MAX_COUNT_HASHTAGS), `Слишком много хештегов! Должно быть не больше ${ MAX_COUNT_HASHTAGS}.`, 3, false);
+  pristine.addValidator(hashtags, (value) => value.split(' ').some((hashtag) => hashtag.length < MAX_LENGTH_HASHTAG), `Хештеги не могут быть длиннее ${ MAX_LENGTH_HASHTAG } символов!`, 2, false);
+  pristine.addValidator(hashtags, (value) => value.split(' ').some((hashtag) => (re.test(hashtag))), 'Хештег должен содержать только буквы или цифры!', 1, false);
 
   uploadForm.addEventListener('change', onUploadFormChange);
   btnCancelUploadForm.addEventListener('click', closeForm);

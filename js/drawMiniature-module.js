@@ -1,6 +1,6 @@
 import {getDataUsers} from './data.js';
-import {openBigPictureModal} from './fullSizePicture-modal.js';
 import {isEnterKey} from './util.js';
+import {openBigPictureModal} from './fullSizePicture-module.js';
 
 const drawMiniatures = function(){
   const data = getDataUsers();
