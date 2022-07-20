@@ -1,5 +1,8 @@
-import {drawMiniatures} from './drawMiniature-module.js';
-import {createUploadFileForm} from './formValidation-module.js';
+import {drawMiniatures} from './draw-miniature.js';
+import {createUploadFileForm} from './form-validation.js';
+import {loadData} from './api.js';
+import {doAfterFailure} from './handlers.js';
 
-drawMiniatures();
+
+loadData((items) => { drawMiniatures(items); }, doAfterFailure);
 createUploadFileForm();
