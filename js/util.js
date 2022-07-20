@@ -39,4 +39,11 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-export {getRandomIntNumber, createRandomIdFromRangeGenerator, isStringRightLength, getRandomArrayElement, isEscapeKey, isEnterKey};
+export {
+  getRandomIntNumber,
+  createRandomIdFromRangeGenerator,
+  isStringRightLength,
+  getRandomArrayElement,
+  isEscapeKey,
+  isEnterKey,
+};
