@@ -23,11 +23,11 @@ const saveData = (onSuccess, onFailure, data) => {
     body: data
   })
     .then((response) => {
-      if(!response.ok){
+      if(response.ok){
+        onSuccess();
+      } else {
         throw new Error('Ошибка сохранения данных!');
       }
-
-      onSuccess();
     })
     .catch((errorMsg) => {
       onFailure(errorMsg);

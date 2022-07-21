@@ -1,4 +1,3 @@
-import {isEnterKey} from './util.js';
 import {openBigPictureModal} from './full-size-picture.js';
 
 const drawMiniatures = (data) => {
@@ -16,12 +15,6 @@ const drawMiniatures = (data) => {
 
     newPictureElement.querySelector('.picture__img').addEventListener('click', () => {
       openBigPictureModal(item);
-    });
-
-    newPictureElement.querySelector('.picture__img').addEventListener('keydown', (evt) => {
-      if (isEnterKey(evt)) {
-        openBigPictureModal();
-      }
     });
 
     picturesListFragment.appendChild(newPictureElement);
