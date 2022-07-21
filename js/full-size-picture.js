@@ -1,4 +1,4 @@
-import {isEscapeKey, isEnterKey} from './util.js';
+import {isEscapeKey} from './utils.js';
 import {DEFAULT_COUNT_COMMENTARY} from './consts.js';
 
 const bodyElement =  document.querySelector('body');
@@ -36,7 +36,7 @@ const createCommentary = function(item, counter){
 const onLoadMoreCommentClick = function(item){
   commentaryCounter += DEFAULT_COUNT_COMMENTARY;
 
-  if(item.comments.length <= commentaryCounter)
+  if(item.comments.length < commentaryCounter)
   {
     commentaryCounter = item.comments.length;
     bigPictureElement.querySelector('.comments-loader').classList.add('hidden');
@@ -46,7 +46,7 @@ const onLoadMoreCommentClick = function(item){
   createCommentary(item, commentaryCounter);
 };
 
-function openBigPictureModal (item) {
+const openBigPictureModal = (item) => {
   bigPictureElement.classList.remove('hidden');
   bigPictureElement.querySelector('img').src = item.url;
   bigPictureElement.querySelector('.likes-count').textContent = item.likes;
@@ -65,7 +65,7 @@ function openBigPictureModal (item) {
 
   bodyElement.classList.add('modal__open');
   document.addEventListener('keydown', onPopupEscKeydown);
-}
+};
 
 function closeBigPicModal () {
   bigPictureElement.classList.add('hidden');
@@ -80,12 +80,6 @@ function closeBigPicModal () {
 
 buttonCloseElement.addEventListener('click', () => {
   closeBigPicModal();
-});
-
-buttonCloseElement.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    closeBigPicModal();
-  }
 });
 
 export {openBigPictureModal, closeBigPicModal, onPopupEscKeydown};

@@ -1,5 +1,4 @@
-
-import {isEscapeKey} from './util.js';
+import {isEscapeKey} from './utils.js';
 
 const bodyElement = document.querySelector('body');
 const successInnerElement = document.querySelector('.success__inner');
