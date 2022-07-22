@@ -58,7 +58,7 @@ const doAfterFailure = (erorrMessage) => {
 
   if(erorrMessage !== undefined){
     failureMessage.querySelector('.error__title').textContent = erorrMessage;
-    failureMessage.querySelector('.error__button').textContent = 'Попробовать позже.';
+    failureMessage.querySelector('.error__button').textContent = 'Попробовать еще раз.';
   }
 
   messageFragment.appendChild(failureMessage);

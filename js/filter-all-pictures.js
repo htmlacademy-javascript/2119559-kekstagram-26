@@ -17,27 +17,31 @@ const setActiveButton = (evt) => {
 };
 
 const onDefaultButtonClick = (data, drawMiniatures) => {
-  clearMiniatures();
   drawMiniatures(data);
 };
 const onRandomButtonClick = (data, drawMiniatures) => {
-  clearMiniatures();
   const newData = data.map((item) => item);
   drawMiniatures(newData.sort(() => Math.random() - 0.5).slice(0,9));
 };
 
 const onDebateButtonClick = (data, drawMiniatures) => {
-  clearMiniatures();
   const newData = data.map((item) => item);
   drawMiniatures(newData.slice().sort((photo1, photo2) => photo2.comments.length - photo1.comments.length));
+};
+
+const onFilter = (evt, data, cb, func) => {
+  evt.preventDefault();
+  setActiveButton(evt);
+  clearMiniatures();
+  func(data, cb);
 };
 
 const showFilters = (data, cb) => {
   filterSectionElement.classList.remove('img-filters--inactive');
 
-  defaultButtonElement.addEventListener('click', (evt) => { evt.preventDefault(); setActiveButton(evt); onDefaultButtonClick(data, cb); });
-  randomButtonElement.addEventListener('click', (evt) => { evt.preventDefault(); setActiveButton(evt); onRandomButtonClick(data, cb); });
-  debateButtonElement.addEventListener('click', (evt) => { evt.preventDefault(); setActiveButton(evt); onDebateButtonClick(data, cb); });
+  defaultButtonElement.addEventListener('click', (evt) => { onFilter(evt, data, cb, onDefaultButtonClick); });
+  randomButtonElement.addEventListener('click', (evt) => { onFilter(evt, data, cb, onRandomButtonClick); });
+  debateButtonElement.addEventListener('click', (evt) => { onFilter(evt, data, cb, onDebateButtonClick); });
 };
 
 export {showFilters};

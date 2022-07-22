@@ -1,4 +1,4 @@
-import {MAX_VALUE_FILTER_SCALE, MIN_VALUE_FILTER_SCALE, SCALE_STEP, filtersProperties} from './consts.js';
+import {MAX_VALUE_FILTER_SCALE, MIN_VALUE_FILTER_SCALE, SCALE_STEP, NUMBER_BASE, filtersProperties} from './consts.js';
 
 const buttonToSmallerElement = document.querySelector('.scale__control--smaller');
 const buttonToBiggerElement = document.querySelector('.scale__control--bigger');
@@ -11,19 +11,16 @@ const sliderElement = document.querySelector('.effect-level__slider');
 const sliderLevelElement = document.querySelector('.img-upload__effect-level');
 const valueElement = document.querySelector('.effect-level__value');
 
-const changeSize = function(isBigger){
-  let currentSize = parseInt(controlValueElement.value, 10);
+const changeSize = (isBigger) => {
+  let currentSize = parseInt(controlValueElement.value, NUMBER_BASE);
   currentSize = isBigger ? currentSize + SCALE_STEP : currentSize - SCALE_STEP;
 
   buttonToSmallerElement.disabled = currentSize === MIN_VALUE_FILTER_SCALE;
   buttonToBiggerElement.disabled = currentSize === MAX_VALUE_FILTER_SCALE;
 
   controlValueElement.value = `${currentSize}%`;
-  imgPreviewElement.style.transform = `scale(${currentSize /= 100})`;
+  imgPreviewElement.style.transform = `scale(${currentSize /= MAX_VALUE_FILTER_SCALE})`;
 };
-
-buttonToSmallerElement.addEventListener('click', () => changeSize(false));
-buttonToBiggerElement.addEventListener('click', () => changeSize(true));
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -46,7 +43,7 @@ noUiSlider.create(sliderElement, {
   },
 });
 
-const onEffectListChange = function(evt){
+const onEffectListChange = (evt) => {
   if (evt.target.matches('input[type="radio"]')) {
     imgPreviewElement.removeAttribute('class');
     imgPreviewElement.classList.add(`effects__preview--${evt.target.value}`);
@@ -96,6 +93,9 @@ sliderElement.noUiSlider.on('update', () => {
 
   imgPreviewElement.style.filter = filterValue;
 });
+
+buttonToSmallerElement.addEventListener('click', () => changeSize(false));
+buttonToBiggerElement.addEventListener('click', () => changeSize(true));
 
 sliderElement.setAttribute('hidden', true);
 sliderLevelElement.setAttribute('hidden', true);
