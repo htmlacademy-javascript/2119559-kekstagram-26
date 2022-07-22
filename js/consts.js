@@ -1,5 +1,7 @@
 const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
+const NUMBER_BASE = 10;
+
 const MAX_LENGTH_HASHTAG = 20;
 const MAX_COUNT_HASHTAGS = 5;
 
@@ -8,6 +10,10 @@ const DEFAULT_COUNT_COMMENTARY = 5;
 const MAX_VALUE_FILTER_SCALE = 100;
 const MIN_VALUE_FILTER_SCALE = 25;
 const SCALE_STEP = 25;
+
+const MAX_LENGTH_DESCRIPTION = 140;
+
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const SERVER_URL = 'https://26.javascript.pages.academy/kekstagram';
 const SERVER_URL_GET_DATA = `${SERVER_URL}/data`;
@@ -59,14 +65,20 @@ export {
   re,
   filtersProperties,
 
+  NUMBER_BASE,
+
   MAX_COUNT_HASHTAGS,
   MAX_LENGTH_HASHTAG,
 
   DEFAULT_COUNT_COMMENTARY,
 
+  FILE_TYPES,
+
   MAX_VALUE_FILTER_SCALE,
   MIN_VALUE_FILTER_SCALE,
   SCALE_STEP,
+
+  MAX_LENGTH_DESCRIPTION,
 
   SERVER_URL,
   SERVER_URL_GET_DATA,

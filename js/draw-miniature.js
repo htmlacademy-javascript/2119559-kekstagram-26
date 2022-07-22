@@ -1,11 +1,11 @@
 import {openBigPictureModal} from './full-size-picture.js';
 
+const containerElement = document.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content;
+
+const picturesListFragment = document.createDocumentFragment();
+
 const drawMiniatures = (data) => {
-  const containerElement = document.querySelector('.pictures');
-  const pictureTemplate = document.querySelector('#picture').content;
-
-  const picturesListFragment = document.createDocumentFragment();
-
   data.forEach((item) => {
     const newPictureElement = pictureTemplate.cloneNode(true);
 
