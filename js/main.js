@@ -1,7 +1,9 @@
-import {getDataUsers} from './data';
-import {getRandomIntNumber, isStringRightLength} from './util';
+import {drawMiniatures} from './draw-miniature.js';
+import {createUploadFileForm} from './form-validation.js';
+import {loadData} from './api.js';
+import {doAfterFailure} from './handlers.js';
+import {showFilters} from './filter-all-pictures.js';
+import {debounce} from './utils.js';
 
-getRandomIntNumber(0, 2);
-isStringRightLength('123', 2);
-
-getDataUsers();
+loadData((items) => { drawMiniatures(items); showFilters(items, debounce(drawMiniatures)); }, doAfterFailure);
+createUploadFileForm();
