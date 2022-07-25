@@ -9,13 +9,13 @@ const failureTemplate = document.querySelector('#error').content;
 const onSuccessEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeSuccessMessage();
+    onCloseSuccessMessage();
   }
 };
 
 const onSuccessReportClick = (evt) => {
   if (evt.target !== successInnerElement && evt.target !== successTitleElement) {
-    closeSuccessMessage();
+    onCloseSuccessMessage();
   }
 };
 
@@ -30,10 +30,10 @@ const doAfterSuccessUploadFile = () => {
   document.addEventListener('click', onSuccessReportClick);
 
   const submitButton = document.querySelector('.success__button');
-  submitButton.addEventListener('click', closeSuccessMessage);
+  submitButton.addEventListener('click', onCloseSuccessMessage);
 };
 
-function closeSuccessMessage () {
+function onCloseSuccessMessage () {
   document.querySelector('section.success').remove();
   document.removeEventListener('keydown', onSuccessEscKeydown);
   document.removeEventListener('click', onSuccessReportClick);
@@ -42,13 +42,13 @@ function closeSuccessMessage () {
 const onFailureEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeFailureMessage();
+    onCloseFailureMessage();
   }
 };
 
 const onFailureReportClick = (evt) => {
   if (evt.target !== successInnerElement && evt.target !== successTitleElement) {
-    closeFailureMessage();
+    onCloseFailureMessage();
   }
 };
 
@@ -68,10 +68,10 @@ const doAfterFailure = (erorrMessage) => {
   document.addEventListener('click', onFailureReportClick);
 
   const submitButton = document.querySelector('.error__button');
-  submitButton.addEventListener('click', closeFailureMessage);
+  submitButton.addEventListener('click', onCloseFailureMessage);
 };
 
-function closeFailureMessage () {
+function onCloseFailureMessage () {
   document.querySelector('section.error').remove();
   document.removeEventListener('keydown', onFailureEscKeydown);
   document.removeEventListener('click', onFailureReportClick);

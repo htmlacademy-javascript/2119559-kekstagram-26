@@ -28,7 +28,7 @@ const onFileUploadEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     if (hashtagsElement !== document.activeElement && descriptionElement !== document.activeElement) {
-      closeForm();
+      onCloseForm();
       document.removeEventListener('keydown', onFileUploadEscKeydown);
     }
   }
@@ -69,7 +69,7 @@ const createUploadFileForm = () => {
   pristine.addValidator(descriptionElement, (value) => value.length < MAX_LENGTH_DESCRIPTION, `Комментарий не должен быть длиннее ${MAX_LENGTH_DESCRIPTION}`);
 
   uploadFormElement.addEventListener('change', onUploadFormChange);
-  buttonCancelElement.addEventListener('click', closeForm);
+  buttonCancelElement.addEventListener('click', onCloseForm);
 
   imgUploadFormElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -80,11 +80,11 @@ const createUploadFileForm = () => {
       saveData(
         () => {
           doAfterSuccessUploadFile();
-          closeForm(true);
+          onCloseForm(true);
         },
         () => {
           doAfterFailure();
-          closeForm(false);
+          onCloseForm(false);
         },
         new FormData(evt.target)
       );
@@ -99,7 +99,7 @@ const createUploadFileForm = () => {
   });
 };
 
-function closeForm(isNeedToClean) {
+function onCloseForm(isNeedToClean) {
   imgUploadOverlayElement.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
   buttonSubmitElement.disabled = false;
