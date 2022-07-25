@@ -1,5 +1,3 @@
-const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
-
 const NUMBER_BASE = 10;
 
 const MAX_LENGTH_HASHTAG = 20;
@@ -17,6 +15,8 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const SERVER_URL = 'https://26.javascript.pages.academy/kekstagram';
 const SERVER_URL_GET_DATA = `${SERVER_URL}/data`;
+
+const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 const filtersProperties = {
   chrome: {
@@ -62,9 +62,6 @@ const filtersProperties = {
 };
 
 export {
-  re,
-  filtersProperties,
-
   NUMBER_BASE,
 
   MAX_COUNT_HASHTAGS,
@@ -82,5 +79,8 @@ export {
 
   SERVER_URL,
   SERVER_URL_GET_DATA,
+
+  re,
+  filtersProperties,
 };
 

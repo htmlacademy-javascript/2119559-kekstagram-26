@@ -15,7 +15,7 @@ let commentaryCounter = DEFAULT_COUNT_COMMENTARY;
 const onPopupEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeBigPicModal();
+    onCloseBigPicModal();
   }
 };
 
@@ -78,9 +78,9 @@ const openBigPictureModal = (item) => {
   document.addEventListener('keydown', onPopupEscKeydown);
 };
 
-buttonCloseElement.addEventListener('click', closeBigPicModal);
+buttonCloseElement.addEventListener('click', onCloseBigPicModal);
 
-function closeBigPicModal () {
+function onCloseBigPicModal () {
   commentaryCounter = 0;
 
   bigPictureElement.classList.add('hidden');
@@ -95,4 +95,4 @@ function closeBigPicModal () {
   document.querySelector('.img-upload__preview > img').removeAttribute('class');
 }
 
-export {openBigPictureModal, closeBigPicModal, onPopupEscKeydown};
+export {openBigPictureModal, onCloseBigPicModal as closeBigPicModal, onPopupEscKeydown};
